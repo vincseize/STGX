@@ -30,6 +30,8 @@ function recurseRmdir($dir) {
 
 @recurseRmdir($pack_folder);
 
+
+
 mkdir($pack_folder,0777);
 
     function copy_directory( $source, $destination ) {
@@ -62,7 +64,7 @@ copy_directory('cases',$pack_folder.'/cases');
 copy_directory('sequences',$pack_folder.'/sequences');
 
 // copy_directory('storygraph-json.php',$pack_folder.'/storygraph-json.php');
-copy_directory('storygraph-json.txt',$pack_folder.'/storygraph-json.txt');
+// copy_directory('storygraph-json.txt',$pack_folder.'/storygraph-json.txt');
 
 // Start the buffering //
 ob_start();

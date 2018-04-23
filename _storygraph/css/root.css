@@ -1,0 +1,11 @@
+:root {
+
+  --width-left-pane: 10vh;
+  --width-left-pane: 15%;
+  --width-bt-param: 32px;
+
+  --width-left-STG_pane: -webkit-calc(15% + var(--width-bt-param) + 4px);
+
+  --height-header: 35px;
+
+}

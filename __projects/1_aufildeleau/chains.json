@@ -1,0 +1,39 @@
+var chains=     {
+        "chain": 
+        [{
+                "lenght": "5",
+                "first_asset": [{
+
+                                        "id": 16,
+                                        "type": "cases",
+                                        "children": ["17", "18"],
+                                        "parent": []
+
+                }],
+
+                "list": [{
+
+                        "nodes" : [
+                                        {
+                                          "id": 17,
+                                          "children": [{"id":"17","angle":"90°"},{"id":"25","angle":"90°"}],
+                                          "parents": [{"id":"170","angle":"90°"}]
+                                        },
+                                        {
+                                          "id": 217,
+                                          "children": [{"id":"217","angle":"90°"},{"id":"225","angle":"90°"}],
+                                          "parents": [{"id":"2170","angle":"90°"}]
+                                        },
+                                        {
+                                          "id": 317,
+                                          "children": [{"id":"317","angle":"90°"},{"id":"325","angle":"90°"}], 
+                                          "parents": [{"id":"3170","angle":"90°"}]
+                                        }
+                    ]
+
+
+                }]
+
+        }]
+
+}

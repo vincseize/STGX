@@ -1,0 +1,19 @@
+:root {
+
+  /* colors */
+  --color-dark-black:#171714;
+  --color-grey1:#222;
+  --color-grey2:#333;
+  --color-grey3:#444;
+  --color-grey4:#575757;
+  --color-grey5:#858484;
+  --color-grey6:#B7B6B6;
+
+  --color-blue1:#7ccafe;
+  --color-blue2:#3cb0fd;
+  --color-blue3:#069;
+  --color-blue6:#0D3246;
+
+  --main-bg-color: var(--color-dark-black);
+
+}

@@ -1,0 +1,19 @@
+:root {
+
+  --width-left-pane: 10vw;
+  --height-left-pane: calc(100% - var(--height-footer));
+  --width-right-pane: 15vh;
+  --height-right-pane: calc(100%  - var(--height-footer));
+  --height-header: 35px;
+  --top-wrapper: 35px;
+  --height-footer: 20px;
+
+  --width-bt-param: 32px;
+
+  --st-menuTop-height: 32px;
+
+  --width-container-graph: calc(100% - var(--width-right-pane));
+
+  --height-container-graph: calc(100% - var(--height-header) - var(--height-footer));
+
+}

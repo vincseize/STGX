@@ -57,7 +57,6 @@
 	}
 
 	.div-no-repeat {
-	    /*background-image: url('http://lorempixel.com/g/500/500/');*/
 	    background-repeat: no-repeat;
 	}
 
@@ -89,18 +88,12 @@ $(document).ready(function() {
 
   $('#fullpage').fullpage({
 
- //  	sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-	// anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	anchors: ['firstPage', 'lastPage'],
 	menu: '#menu',
 
 	afterRender: function() {
 	console.log('afterRender');
 	$(".fp-next").show();
-	// $.fn.fullpage.setAllowScrolling(false, 'left, right');
-	//$.fn.fullpage.setAllowScrolling(false);
-	// $.fn.fullpage.moveSlideLeft(false);
-	//$.fn.fullpage.moveSlideRight();
 	},
 
     afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
@@ -128,8 +121,6 @@ $(document).ready(function() {
 		var id = loadedSlide.closest('.slide').attr('id');
 
 		$(".fp-controlArrow").hide();
-		// $(".fp-next").show();
-		// $(".fp-prev").show();
 
 		if(id == "case_TITLE"){
 		    $(".fp-prev").hide();
@@ -145,11 +136,6 @@ $(document).ready(function() {
     onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
             var loadedSlide = $(this);
             var id = loadedSlide.closest('.slide').attr('id');
-			// if(id == "slide10"){
-			// 	$(".fp-prev").show();
-			//     $(".fp-next").hide();
-			//     var nextSlideIndex = slideIndex;
-			// }
     }
 
 
@@ -163,22 +149,14 @@ $(document).ready(function() {
 
 
 
-
-
 </head>
 <body>
 
 
-
 <ul id="menu" style="display:none;" >
-	<!-- <li data-menuanchor="firstPage" class="active"><a href="#firstPage/1">1</a></li> -->
-<!-- 	<li data-menuanchor="firstPage" class="active"><a href="#firstPage/">1</a></li>
-	<li data-menuanchor="secondPage"><a href="#firstPage/1">2</a></li>
-	<li data-menuanchor="thirdPage" ><a href="#firstPage/2">3</a></li>
-	<li data-menuanchor="fourthPage"><a href="#firstPage/3">4</a></li> -->
 
 	<li data-menuanchor="firstPage"><a href="#case_TITLE">TITLE</a></li>
-		<li data-menuanchor="case_1"><a href="#case_1">case 1</a></li><li data-menuanchor="case_2"><a href="#case_2">case 2</a></li><li data-menuanchor="case_3"><a href="#case_3">case 3</a></li><li data-menuanchor="case_4"><a href="#case_4">case 4</a></li><li data-menuanchor="case_5"><a href="#case_5">case 5</a></li><li data-menuanchor="case_6"><a href="#case_6">case 6</a></li><li data-menuanchor="case_7"><a href="#case_7">case 7</a></li>	<li data-menuanchor="fourthPage"><a href="#case_END">END</a></li>
+		<li data-menuanchor="case_1"><a href="#case_1">case 1</a></li><li data-menuanchor="case_2"><a href="#case_2">case 2</a></li><li data-menuanchor="case_3"><a href="#case_3">case 3</a></li><li data-menuanchor="case_4"><a href="#case_4">case 4</a></li><li data-menuanchor="case_5"><a href="#case_5">case 5</a></li><li data-menuanchor="case_6"><a href="#case_6">case 6</a></li><li data-menuanchor="case_7"><a href="#case_7">case 7</a></li><li data-menuanchor="case_8"><a href="#case_8">case 8</a></li>	<li data-menuanchor="fourthPage"><a href="#case_END">END</a></li>
 
 </ul>
 
@@ -186,196 +164,23 @@ $(document).ready(function() {
 
 	  <div class="section">
 
-<!-- 		    <div class="slide active" id="slide1">
-		      <h1>S1</h1>
-		  </div> 
-
-		    <div class="slide" id="slide1">
-		      <h1>S1</h1>
-		  </div>
--->
-
 
 		<div id="case_TITLE" class="slide div-no-repeat div-contain">
 				<h1>AU FIL DE LEAU</h1>
 		</div>
 
-
-		<div id="case_1" class="slide div-no-repeat div-contain"><h1>1</h1></div><div id="case_2" class="slide div-no-repeat div-contain"><h1>2</h1></div><div id="case_3" class="slide div-no-repeat div-contain"><h1>3</h1></div><div id="case_4" class="slide div-no-repeat div-contain"><h1>4</h1></div><div id="case_5" class="slide div-no-repeat div-contain"><h1>5</h1></div><div id="case_6" class="slide div-no-repeat div-contain"><h1>6</h1></div><div id="case_7" class="slide div-no-repeat div-contain"><h1>7</h1></div>
-
+		<div id="case_1" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_1/case_1_bg.jpg?t=1524525506);"><h1>1</h1></div><div id="case_2" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_2/case_2_bg.jpg?t=1524525506);"><h1>2</h1></div><div id="case_3" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_3/case_3_bg.jpg?t=1524525506);"><h1>3</h1></div><div id="case_4" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_4/case_4_bg.jpg?t=1524525506);"><h1>4</h1></div><div id="case_5" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_5/case_5_bg.gif?t=1524525506);"><h1>5</h1></div><div id="case_6" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_6/case_6_bg.jpg?t=1524525506);"><h1>6</h1></div><div id="case_7" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_7/case_7_bg.jpg?t=1524525506);"><h1>7</h1></div><div id="case_8" class="slide div-no-repeat div-contain" style="background-image:url(cases/case_8/case_8_bg.jpg?t=1524525506);"><h1>8</h1></div>
 		<div id="case_END" class="slide div-no-repeat div-contain">
 				<h1>FIN</h1>
 		</div>
-
-		      
+      
 		    <div class="num"></div>
-
 
 	  </div>
 
 </div>
 
-<!-- 
-<div id="fullpageDES" style="display:none;">
-
-	<div class="section active" id="section1">
-
-
-		<div id="case_TITLE" class="slide div-slide">
-			<div class="intro">
-				<h1>AU FIL DE LEAU</h1>
-			</div>
-		</div>
-
-
-		<div id="case_1" class="slide div-slide"><div class="intro"><h1>1</h1></div></div><div id="case_2" class="slide div-slide"><div class="intro"><h1>2</h1></div></div><div id="case_3" class="slide div-slide"><div class="intro"><h1>3</h1></div></div><div id="case_4" class="slide div-slide"><div class="intro"><h1>4</h1></div></div><div id="case_5" class="slide div-slide"><div class="intro"><h1>5</h1></div></div><div id="case_6" class="slide div-slide"><div class="intro"><h1>6</h1></div></div><div id="case_7" class="slide div-slide"><div class="intro"><h1>7</h1></div></div>
-
-		<div id="case_END" class="slide div-slide">
-			<div class="intro">
-				<h1>FIN</h1>
-			</div>
-		</div>
-
-
-	</div>
-
-</div> -->
-
-
-
-<script>
-
-// var url = "storygraph-json.php";
-var url = "storygraph-json.txt";
-
-
-function populateCases() {
-    getJson(function(json_obj) {
-        //processing the data
-        // console.log(json_obj);
-        // var json_obj = $.parseJSON(json_obj);//parse JSON
-        for (var i in json_obj) 
-            {
-            	// ------------------ case json
-            	// console.log(json_obj[i]); // ["cases","7","jpg"]
-                var classes = json_obj[i][0];
-                var id = json_obj[i][1];
-                var ext = json_obj[i][2];
-                console.log(classes + ",  " + id + " ,  " + ext);
-
-            	// ------------------ case json_string
-                // console.log(json_obj[i].classes + ",  " + json_obj[i].id + ",  " + json_obj[i].ext);
-                // var classes = json_obj[i].classes;
-                // var id = json_obj[i].id;
-                // var ext = json_obj[i].ext;
-                // if(ext!=""){
-                if(ext){
-			        var imageUrl = 'cases/case_'+id+'/case_'+id+'_bg.'+ext+'';
-					var id_div = "#case_"+id;
-			        $(id_div).css('background-image', 'url(' + imageUrl + ')');                	
-                }
-
-
-            }
-
-    });
-}
-
-
-function getJson(callback) {
-    var data;
-    $.ajax({
-        url: url,
-        dataType: "json", //set to JSON
-        success: function (resp) {
-            data = resp;
-            callback(data);
-        },
-        error: function () {}
-    }); // ajax asynchronus request 
-    //the following line wouldn't work, since the function returns immediately
-    //return data; // return data from the ajax request
-}
-
-
-populateCases();
-
-
-
-// $.ajax({
-//         type: "GET", 
-//         url: urlX, 
-// 		dataType: "json", //set to JSON
-//         success: function(response)
-//         {
-// 	    	var json_obj = $.parseJSON(response);//parse JSON
-//             for (var i in json_obj) 
-//             {
-
-//                 console.log(json_obj[i].classes + ",  " + json_obj[i].id + ",  " + json_obj[i].ext);
-//                 var id = json_obj[i].id;
-//                 var ext = json_obj[i].ext;
-
-// 		        var imageUrl = 'cases/case_'+id+'/case_'+id+'_bg.'+ext+'';
-// 				var id_div = "#case_"+id;
-// 		        $(id_div).css('background-image', 'url(' + imageUrl + ')');
-
-//             }
-
-//         }    
-// }) 
-
-
-
-
-
-
-
-
-// $.get( url, function( data ) {
-
-//  obj = JSON.parse(data);
-
-// 	console.log('data');
-// 	console.log(data);
-//   // console.log(JSON.encode(data));
-//   console.log(typeof(data));
-
-// });
-
-
-
-// for (var i = 0; i < arrayLength; i++) {
-// 		id = myStringArray_ID[i];
-
-
-//         var imageUrl = 'cases/case_'+id+'/case_'+id+'_bg.'+ext+'';
-// 		var id_div = "#case_"+id;
-//         $(id_div).css('background-image', 'url(' + imageUrl + ')');
-
-// }
-
-
-		
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_7/case_7_bg.jpg';
-        // $('#case_7').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_6/case_6_bg.jpg';
-        // $('#case_6').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_9/case_9_bg.jpg';
-        // $('#case_9').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_3/case_3_bg.png';
-        // $('#case_3').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_2/case_2_bg.jpg';
-        // $('#case_2').css('background-image', 'url(' + imageUrl + ')');
-
-
-
-
-</script>
 
 </body>
 </html>
+

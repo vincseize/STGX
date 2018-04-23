@@ -10,16 +10,6 @@ $project_title = '';
 $str = file_get_contents('project_info.json');
 $json = json_decode($str, true);
 $project_title = $json['Infos']['title']; 
-// exit;
-
-
-// $tmp_a = strstr($project, '_');
-// $tmp_b = str_replace("_"," ",$tmp_a);
-
-// $_SESSION["NAME_PROJECT"] = $tmp_b; // todo better
-
-// $_SESSION["NAME_PROJECT"] = $project_title; // todo better
-
 
 ?>
 <?php
@@ -29,24 +19,6 @@ $stg_myproject_name_index = "stg_myproject.html";
 
 $pack_folder = "x";
 
- // function rrmdir($dir) { 
- //   if (is_dir($dir)) { 
- //     $objects = scandir($dir); 
- //     foreach ($objects as $object) { 
- //       if ($object != "." && $object != "..") { 
- //         if (is_dir($dir."/".$object))
- //           rrmdir($dir."/".$object);
- //         else
- //           unlink($dir."/".$object); 
- //       } 
- //     }
- //     rmdir($dir); 
- //   } 
- // }
-
-// rrmdir($pack_folder);
-
-// exit;
 
 function recurseRmdir($dir) {
   $files = array_diff(scandir($dir), array('.','..'));
@@ -56,12 +28,7 @@ function recurseRmdir($dir) {
   return rmdir($dir);
 }
 
-
-
 @recurseRmdir($pack_folder);
-
-// exit;
-
 
 mkdir($pack_folder,0777);
 
@@ -159,7 +126,6 @@ ob_start();
 	}
 
 	.div-no-repeat {
-	    /*background-image: url('http://lorempixel.com/g/500/500/');*/
 	    background-repeat: no-repeat;
 	}
 
@@ -191,18 +157,12 @@ $(document).ready(function() {
 
   $('#fullpage').fullpage({
 
- //  	sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', 'whitesmoke', '#ccddff'],
-	// anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'lastPage'],
 	anchors: ['firstPage', 'lastPage'],
 	menu: '#menu',
 
 	afterRender: function() {
 	console.log('afterRender');
 	$(".fp-next").show();
-	// $.fn.fullpage.setAllowScrolling(false, 'left, right');
-	//$.fn.fullpage.setAllowScrolling(false);
-	// $.fn.fullpage.moveSlideLeft(false);
-	//$.fn.fullpage.moveSlideRight();
 	},
 
     afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex) {
@@ -230,8 +190,6 @@ $(document).ready(function() {
 		var id = loadedSlide.closest('.slide').attr('id');
 
 		$(".fp-controlArrow").hide();
-		// $(".fp-next").show();
-		// $(".fp-prev").show();
 
 		if(id == "case_TITLE"){
 		    $(".fp-prev").hide();
@@ -247,11 +205,6 @@ $(document).ready(function() {
     onSlideLeave: function (anchorLink, index, slideIndex, direction, nextSlideIndex) {
             var loadedSlide = $(this);
             var id = loadedSlide.closest('.slide').attr('id');
-			// if(id == "slide10"){
-			// 	$(".fp-prev").show();
-			//     $(".fp-next").hide();
-			//     var nextSlideIndex = slideIndex;
-			// }
     }
 
 
@@ -265,19 +218,11 @@ $(document).ready(function() {
 
 
 
-
-
 </head>
 <body>
 
 
-
 <ul id="menu" style="display:none;" >
-	<!-- <li data-menuanchor="firstPage" class="active"><a href="#firstPage/1">1</a></li> -->
-<!-- 	<li data-menuanchor="firstPage" class="active"><a href="#firstPage/">1</a></li>
-	<li data-menuanchor="secondPage"><a href="#firstPage/1">2</a></li>
-	<li data-menuanchor="thirdPage" ><a href="#firstPage/2">3</a></li>
-	<li data-menuanchor="fourthPage"><a href="#firstPage/3">4</a></li> -->
 
 	<li data-menuanchor="firstPage"><a href="#case_TITLE">TITLE</a></li>
 		<?php
@@ -293,242 +238,87 @@ $(document).ready(function() {
 
 	  <div class="section">
 
-<!-- 		    <div class="slide active" id="slide1">
-		      <h1>S1</h1>
-		  </div> 
-
-		    <div class="slide" id="slide1">
-		      <h1>S1</h1>
-		  </div>
--->
-
 
 		<div id="case_TITLE" class="slide div-no-repeat div-contain">
 				<h1><?php echo $project_title;?></h1>
 		</div>
 
-
 		<?php
+
+			function resolveExt($name) {
+			    // reads informations over the path
+			    $info = pathinfo($name);
+			    if (!empty($info['extension'])) {
+			        // if the file already contains an extension returns it
+			        return $name;
+			    }
+			    $filename = $info['filename'];
+			    $len = strlen($filename);
+			    // open the folder
+			    $dh = opendir($info['dirname']);
+			    if (!$dh) {
+			        return false;
+			    }
+			    // scan each file in the folder
+			    while (($file = readdir($dh)) !== false) {
+			        if (strncmp($file, $filename, $len) === 0) {
+			            if (strlen($name) > $len) {
+			                // if name contains a directory part
+			                $name = substr($name, 0, strlen($name) - $len) . $file;
+			            } else {
+			                // if the name is at the path root
+			                $name = $file;
+			            }
+			            closedir($dh);
+			            return $name;
+			        }
+			    }
+			    // file not found
+			    closedir($dh);
+			    return false;
+			}
+
 			foreach ($IDS_CHAINED_NODES as $id) {
-			  echo '<div id="case_'.$id.'" class="slide div-no-repeat div-contain">';
-				  echo '<h1>'.$id.'</h1>';
-			  echo '</div>';
+
+				$file = resolveExt('cases/case_'.$id.'/case_'.$id.'_bg');
+				$ext = $array =  explode('.', $file)[1];
+				$url_bg = 'cases/case_'.$id.'/case_'.$id.'_bg.'.$ext;
+
+				if (file_exists($url_bg)) {
+					$url_bg = 'cases/case_'.$id.'/case_'.$id.'_bg.'.$ext.'?t='.time();
+				} else {
+					$url_bg = '';
+				}
+
+				echo '<div id="case_'.$id.'" class="slide div-no-repeat div-contain" style="background-image:url('.$url_bg.');">';
+				  	echo '<h1>'.$id.'</h1>';
+				echo '</div>';
 			}
 		?>
-
 
 		<div id="case_END" class="slide div-no-repeat div-contain">
 				<h1>FIN</h1>
 		</div>
-
-		      
+      
 		    <div class="num"></div>
-
 
 	  </div>
 
 </div>
 
-<!-- 
-<div id="fullpageDES" style="display:none;">
-
-	<div class="section active" id="section1">
-
-
-		<div id="case_TITLE" class="slide div-slide">
-			<div class="intro">
-				<h1><?php echo $project_title;?></h1>
-			</div>
-		</div>
-
-
-		<?php
-			foreach ($IDS_CHAINED_NODES as $id) {
-			  echo '<div id="case_'.$id.'" class="slide div-slide">';
-				  echo '<div class="intro">';
-				  echo '<h1>'.$id.'</h1>';
-				  echo '</div>';
-			  echo '</div>';
-			}
-		?>
-
-
-		<div id="case_END" class="slide div-slide">
-			<div class="intro">
-				<h1>FIN</h1>
-			</div>
-		</div>
-
-
-	</div>
-
-</div> -->
-
-
-
-<script>
-
-// var url = "storygraph-json.php";
-var url = "storygraph-json.txt";
-
-
-function populateCases() {
-    getJson(function(json_obj) {
-        //processing the data
-        // console.log(json_obj);
-        // var json_obj = $.parseJSON(json_obj);//parse JSON
-        for (var i in json_obj) 
-            {
-            	// ------------------ case json
-            	// console.log(json_obj[i]); // ["cases","7","jpg"]
-                var classes = json_obj[i][0];
-                var id = json_obj[i][1];
-                var ext = json_obj[i][2];
-                console.log(classes + ",  " + id + " ,  " + ext);
-
-            	// ------------------ case json_string
-                // console.log(json_obj[i].classes + ",  " + json_obj[i].id + ",  " + json_obj[i].ext);
-                // var classes = json_obj[i].classes;
-                // var id = json_obj[i].id;
-                // var ext = json_obj[i].ext;
-                // if(ext!=""){
-                if(ext){
-			        var imageUrl = 'cases/case_'+id+'/case_'+id+'_bg.'+ext+'';
-					var id_div = "#case_"+id;
-			        $(id_div).css('background-image', 'url(' + imageUrl + ')');                	
-                }
-
-
-            }
-
-    });
-}
-
-
-function getJson(callback) {
-    var data;
-    $.ajax({
-        url: url,
-        dataType: "json", //set to JSON
-        success: function (resp) {
-            data = resp;
-            callback(data);
-        },
-        error: function () {}
-    }); // ajax asynchronus request 
-    //the following line wouldn't work, since the function returns immediately
-    //return data; // return data from the ajax request
-}
-
-
-populateCases();
-
-
-
-// $.ajax({
-//         type: "GET", 
-//         url: urlX, 
-// 		dataType: "json", //set to JSON
-//         success: function(response)
-//         {
-// 	    	var json_obj = $.parseJSON(response);//parse JSON
-//             for (var i in json_obj) 
-//             {
-
-//                 console.log(json_obj[i].classes + ",  " + json_obj[i].id + ",  " + json_obj[i].ext);
-//                 var id = json_obj[i].id;
-//                 var ext = json_obj[i].ext;
-
-// 		        var imageUrl = 'cases/case_'+id+'/case_'+id+'_bg.'+ext+'';
-// 				var id_div = "#case_"+id;
-// 		        $(id_div).css('background-image', 'url(' + imageUrl + ')');
-
-//             }
-
-//         }    
-// }) 
-
-
-
-
-
-
-
-
-// $.get( url, function( data ) {
-
-//  obj = JSON.parse(data);
-
-// 	console.log('data');
-// 	console.log(data);
-//   // console.log(JSON.encode(data));
-//   console.log(typeof(data));
-
-// });
-
-
-
-// for (var i = 0; i < arrayLength; i++) {
-// 		id = myStringArray_ID[i];
-
-
-//         var imageUrl = 'cases/case_'+id+'/case_'+id+'_bg.'+ext+'';
-// 		var id_div = "#case_"+id;
-//         $(id_div).css('background-image', 'url(' + imageUrl + ')');
-
-// }
-
-
-		<?php
-
-			  // echo $imageUrl = '../../__projects/1_aufildeleau/cases/case_7/case_7_bg.jpg';
-			  // echo "$('#case_7').css('background-image', 'url(".$imageUrl.")');";
-
-			// foreach ($IDS_CHAINED_NODES as $id) {
-			//   echo $imageUrl = '../../__projects/1_aufildeleau/cases/case_7/case_7_bg.jpg';
-			//   echo "$('#case_7').css('background-image', 'url(".$imageUrl.")');";
-			// }
-		?>
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_7/case_7_bg.jpg';
-        // $('#case_7').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_6/case_6_bg.jpg';
-        // $('#case_6').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_9/case_9_bg.jpg';
-        // $('#case_9').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_3/case_3_bg.png';
-        // $('#case_3').css('background-image', 'url(' + imageUrl + ')');
-
-        // imageUrl = '../../__projects/1_aufildeleau/cases/case_2/case_2_bg.jpg';
-        // $('#case_2').css('background-image', 'url(' + imageUrl + ')');
-
-
-
-
-</script>
 
 </body>
 </html>
-<?php
-// echo '';
 
+<?php
 
 $stg_myproject_html = $pack_folder.'/'.$stg_myproject_name_index;
 
 $myfile = fopen($stg_myproject_html, "w") or die("Unable to open file!");
 fclose($myfile);
 
-// exit;
-
 // Get the content that is in the buffer and put it in your file //
 file_put_contents($stg_myproject_html, ob_get_contents());
-
-
-
-
 
 //read the entire string
 $str=file_get_contents($stg_myproject_html);
@@ -539,11 +329,6 @@ $str=str_replace("../_js", "_js",$str);
 
 //write the entire string
 file_put_contents($stg_myproject_html, $str);
-
-
-
-
-
 
 ?>
 

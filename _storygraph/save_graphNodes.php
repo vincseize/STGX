@@ -61,6 +61,12 @@ session_start();
     // $cases_in_dir = array();
     // $sequences_in_dir = array();
 
+// 
+    $file = $path_dir . 'localstorage_graph.txt';
+    if (file_exists($file)) {
+        unlink($file);
+    }
+
     $localstorage_graph_txt = fopen($path_dir . 'localstorage_graph.txt', 'w+') or die("Unable to open file!");
 
     fwrite($localstorage_graph_txt, $json);

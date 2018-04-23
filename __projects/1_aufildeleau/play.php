@@ -24,7 +24,44 @@ $project_title = $json['Infos']['title'];
 ?>
 <?php
 
+
+$stg_myproject_name_index = "stg_myproject.html";
+
 $pack_folder = "x";
+
+ // function rrmdir($dir) { 
+ //   if (is_dir($dir)) { 
+ //     $objects = scandir($dir); 
+ //     foreach ($objects as $object) { 
+ //       if ($object != "." && $object != "..") { 
+ //         if (is_dir($dir."/".$object))
+ //           rrmdir($dir."/".$object);
+ //         else
+ //           unlink($dir."/".$object); 
+ //       } 
+ //     }
+ //     rmdir($dir); 
+ //   } 
+ // }
+
+// rrmdir($pack_folder);
+
+// exit;
+
+function recurseRmdir($dir) {
+  $files = array_diff(scandir($dir), array('.','..'));
+  foreach ($files as $file) {
+    (is_dir("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
+  }
+  return rmdir($dir);
+}
+
+
+
+@recurseRmdir($pack_folder);
+
+// exit;
+
 
 mkdir($pack_folder,0777);
 
@@ -479,27 +516,36 @@ populateCases();
 // echo '';
 
 
+$stg_myproject_html = $pack_folder.'/'.$stg_myproject_name_index;
 
+$myfile = fopen($stg_myproject_html, "w") or die("Unable to open file!");
+fclose($myfile);
 
-
-
+// exit;
 
 // Get the content that is in the buffer and put it in your file //
-file_put_contents('<?php echo $pack_folder;?>/stg_myproject.html', ob_get_contents());
+file_put_contents($stg_myproject_html, ob_get_contents());
 
 
 
 
 
 //read the entire string
-$str=file_get_contents('<?php echo $pack_folder;?>/stg_myproject.html');
+$str=file_get_contents($stg_myproject_html);
 
 //replace something in the file string - this is a VERY simple example
 $str=str_replace("../_css", "_css",$str);
 $str=str_replace("../_js", "_js",$str);
 
 //write the entire string
-file_put_contents('<?php echo $pack_folder;?>/stg_myproject.html', $str);
+file_put_contents($stg_myproject_html, $str);
+
+
+
+
 
 
 ?>
+
+
+

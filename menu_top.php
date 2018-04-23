@@ -11,7 +11,7 @@ require_once('inc/define.php');
         	<a id="a_bt-param" href="#"><!-- <i class="fa fa-cog"></i> --></a>
         </li>
         <li id="bt-st" class="bt-navbar bt-st bt-navbar-active"><a href="#" style="text-indent: 40px;"><?php echo TITLE_APP;?></a></li>
-        <li id="bt-pg" class="bt-navbar bt-pg" href="__projects/<?php echo $_SESSION["PROJECT"];?>/index.php">      
+        <li id="bt-pg" class="bt-navbar bt-pg" href="__projects/<?php echo $_SESSION["PROJECT"];?>/play.php">      
             <a href="#">       
                 <i id="play_icon" class="fa fa-play-circle-o fa-1x play_icon" aria-hidden="true" style="">
                     <span id="play_icon_txt" class="play_icon_txt">Play Graph <?php echo strtoupper($_SESSION["NAME_PROJECT"]);?></span>

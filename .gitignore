@@ -22,6 +22,8 @@
 
 #/__projects/*/sequences/*.gif
 
-/__projects/*/cases/*
+#/__projects/*/cases/*
 
-/__projects/*/sequences/*
+#/__projects/*/sequences/*
+
+/tests/*

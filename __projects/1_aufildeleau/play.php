@@ -15,46 +15,21 @@ $project_title = $json['Infos']['title'];
 <?php
 
 
+
 $stg_myproject_name_index = "stg_myproject.html";
 
-$pack_folder = "x";
+$pack_folder = $_SESSION["PROJECT"]."_pack";
 
 
-function recurseRmdir($dir) {
-  $files = array_diff(scandir($dir), array('.','..'));
-  foreach ($files as $file) {
-    (is_dir("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
-  }
-  return rmdir($dir);
-}
+// @recurseRmdir($pack_folder);
+@rrmdir($pack_folder);
+@rrmdir("x");
 
-@recurseRmdir($pack_folder);
-
-
+// exit;
 
 mkdir($pack_folder,0777);
 
-    function copy_directory( $source, $destination ) {
-        if ( is_dir( $source ) ) {
-        @mkdir( $destination );
-        $directory = dir( $source );
-        while ( FALSE !== ( $readdirectory = $directory->read() ) ) {
-            if ( $readdirectory == '.' || $readdirectory == '..' ) {
-                continue;
-            }
-            $PathDir = $source . '/' . $readdirectory; 
-            if ( is_dir( $PathDir ) ) {
-                copy_directory( $PathDir, $destination . '/' . $readdirectory );
-                continue;
-            }
-            copy( $PathDir, $destination . '/' . $readdirectory );
-        }
 
-        $directory->close();
-        }else {
-        copy( $source, $destination );
-        }
-    }
 
 
 copy_directory('../_js',$pack_folder.'/_js');
@@ -65,6 +40,61 @@ copy_directory('sequences',$pack_folder.'/sequences');
 
 // copy_directory('storygraph-json.php',$pack_folder.'/storygraph-json.php');
 // copy_directory('storygraph-json.txt',$pack_folder.'/storygraph-json.txt');
+
+
+
+
+   //  echo  $file->getDepth() . " " . $file->getFilename() . "<br/>";
+
+
+
+// $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($pack_folder), RecursiveIteratorIterator::SELF_FIRST);
+
+// foreach($files as $file){  
+// 	if(is_dir($file)){
+// 		//echo  $file . "<br/>";
+// 		if(basename($file)=='compressed'){
+// 			//echo $file. "<br/>";
+// 			// echo basename($file). "<br/>";
+// 			// rrmdir($files);
+// 			//echo realpath($file). "<br/>";
+// 			// recurseRmdir($pack_folder.'/cases/case_1/compressed/');
+// 			// recurseRmdir($file);
+// 			// @rrmdir($file->getRealPath());
+// 			// echo $file->getRealPath(). "<br/>";
+// 		}
+// 	}
+    
+//     // if ($file->getFilename() == 'compressed') {
+//     // 	echo  $file->getFilename() . "<br/>";
+//     // }
+// }
+
+// $iterator = new RecursiveDirectoryIterator(realpath($this->getConfig()->pack_folder));
+
+// // Skip "dot" files
+// $iterator->setFlags(RecursiveDirectoryIterator::SKIP_DOTS);
+
+// // Get directories only
+// $directories = new ParentIterator($iterator);
+
+// // Loop over directories and remove empty ones
+// foreach (new RecursiveIteratorIterator($directories, RecursiveIteratorIterator::SELF_FIRST) as $dir) {
+//         // Count the number of "children" from the main directory iterator
+//         // if (iterator_count($iterator->getChildren()) === 0) {
+//         //         rmdir($dir->getPathname();
+//         // }
+//         echo  $file->getFilename() . "<br/>";
+// }
+
+
+// print_r($IDS_CHAINED_NODES);
+
+
+// exit;
+
+
+
 
 // Start the buffering //
 ob_start();
@@ -331,6 +361,16 @@ $str=str_replace("../_js", "_js",$str);
 
 //write the entire string
 file_put_contents($stg_myproject_html, $str);
+
+
+
+
+
+
+foreach ($IDS_CHAINED_NODES as $id) {
+	@rrmdir($pack_folder.'/cases/case_'.$id.'/compressed');
+}
+
 
 ?>
 

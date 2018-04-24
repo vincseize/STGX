@@ -69,7 +69,27 @@ function Get_project_zip($source, $destination)
     return $zip->close();
 }
 
+function copy_directory( $source, $destination ) {
+    if ( is_dir( $source ) ) {
+    @mkdir( $destination );
+    $directory = dir( $source );
+    while ( FALSE !== ( $readdirectory = $directory->read() ) ) {
+        if ( $readdirectory == '.' || $readdirectory == '..') {
+            continue;
+        }
+        $PathDir = $source . '/' . $readdirectory; 
+        if ( is_dir( $PathDir ) ) {
+            copy_directory( $PathDir, $destination . '/' . $readdirectory );
+            continue;
+        }
+        copy( $PathDir, $destination . '/' . $readdirectory );
+    }
 
+    $directory->close();
+    }else {
+    copy( $source, $destination );
+    }
+}
 
 function rrmdir($dir) { 
    if (is_dir($dir)) { 
@@ -86,9 +106,13 @@ function rrmdir($dir) {
    } 
  }
 
-
-
-
+function recurseRmdir($dir) {
+  $files = array_diff(scandir($dir), array('.','..'));
+  foreach ($files as $file) {
+    (is_dir("$dir/$file")) ? recurseRmdir("$dir/$file") : unlink("$dir/$file");
+  }
+  return rmdir($dir);
+}
 
 function return_bytes($val) {
     $val = trim($val);

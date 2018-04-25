@@ -9,7 +9,7 @@ echo "# PROJECTnameGithub" >> README.md
 
 git init
 git add README.md 
-git -m "first commit"
+git commit -m "first commit"
 git remote add origin https://github.com/xxx/PROJECTnameGithub.git
 git push -u origin master
 Username for 'https://github.com': xxx
@@ -19,7 +19,7 @@ Password for 'https://xxx@github.com':
 
 git add README.md 
 git add . // all 
-git -m "commit name"
+git commit -m "commit name"
 git pull // faculatif ?
 git push -u origin master
 Username for 'https://github.com': xxx

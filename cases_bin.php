@@ -41,7 +41,7 @@ include('assets_header.php');
 
             $path_case = $path_assets."/".$asset."_".$number;
 
-            $pop = "";
+            $pop = "pop";
             $fileBG = glob($path_case.'/*');
             $bg_img_original = $fileBG[0]."?". filemtime($fileBG[0]);
             $data_date =  date("Y-m-d H:i:s",filemtime($fileBG[0]));
@@ -63,8 +63,15 @@ include('assets_header.php');
                 } else {
                     if (file_exists($src_img)) {
                     $bg_img = $bg_img_jpg;
+                    $bg_img_original = $bg_img_jpg;
                     }
                 }
+
+                // if (!file_exists($src_img_thumb)) {
+                //     $bg_img = $bg_img_default;
+                //     $bg_img_original = $bg_img_default;
+                // } 
+
 
             }
 
@@ -146,7 +153,7 @@ include('assets_header.php');
 
 
 <script type="text/javascript">
-    $(".pop").on("click", function() {
+$(".pop").on("click", function() {
    $('#imagepreview').attr('src', $(this).attr('src_high')); // here asign the image to the modal when the user click the enlarge link
    $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
 });

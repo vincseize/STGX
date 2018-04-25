@@ -4,32 +4,23 @@
 session_start();
 require_once('../../inc/define.php');
 require_once('../../inc/fcts.php');
-include('get_chain.php');
+include('../get_chain.php');
 
 $project_title = '';
 $str = file_get_contents('project_info.json');
 $json = json_decode($str, true);
 $project_title = $json['Infos']['title']; 
 
-?>
-<?php
-
-
 
 $stg_myproject_name_index = "stg_myproject.html";
-
 $pack_folder = $_SESSION["PROJECT"]."_pack";
 
 
 // @recurseRmdir($pack_folder);
 @rrmdir($pack_folder);
-@rrmdir("x");
 
-// exit;
 
 mkdir($pack_folder,0777);
-
-
 
 
 copy_directory('../_js',$pack_folder.'/_js');
@@ -37,63 +28,6 @@ copy_directory('../_css',$pack_folder.'/_css');
 
 copy_directory('cases',$pack_folder.'/cases');
 copy_directory('sequences',$pack_folder.'/sequences');
-
-// copy_directory('storygraph-json.php',$pack_folder.'/storygraph-json.php');
-// copy_directory('storygraph-json.txt',$pack_folder.'/storygraph-json.txt');
-
-
-
-
-   //  echo  $file->getDepth() . " " . $file->getFilename() . "<br/>";
-
-
-
-// $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($pack_folder), RecursiveIteratorIterator::SELF_FIRST);
-
-// foreach($files as $file){  
-// 	if(is_dir($file)){
-// 		//echo  $file . "<br/>";
-// 		if(basename($file)=='compressed'){
-// 			//echo $file. "<br/>";
-// 			// echo basename($file). "<br/>";
-// 			// rrmdir($files);
-// 			//echo realpath($file). "<br/>";
-// 			// recurseRmdir($pack_folder.'/cases/case_1/compressed/');
-// 			// recurseRmdir($file);
-// 			// @rrmdir($file->getRealPath());
-// 			// echo $file->getRealPath(). "<br/>";
-// 		}
-// 	}
-    
-//     // if ($file->getFilename() == 'compressed') {
-//     // 	echo  $file->getFilename() . "<br/>";
-//     // }
-// }
-
-// $iterator = new RecursiveDirectoryIterator(realpath($this->getConfig()->pack_folder));
-
-// // Skip "dot" files
-// $iterator->setFlags(RecursiveDirectoryIterator::SKIP_DOTS);
-
-// // Get directories only
-// $directories = new ParentIterator($iterator);
-
-// // Loop over directories and remove empty ones
-// foreach (new RecursiveIteratorIterator($directories, RecursiveIteratorIterator::SELF_FIRST) as $dir) {
-//         // Count the number of "children" from the main directory iterator
-//         // if (iterator_count($iterator->getChildren()) === 0) {
-//         //         rmdir($dir->getPathname();
-//         // }
-//         echo  $file->getFilename() . "<br/>";
-// }
-
-
-// print_r($IDS_CHAINED_NODES);
-
-
-// exit;
-
-
 
 
 // Start the buffering //
@@ -112,7 +46,7 @@ ob_start();
 
 
 	<link rel="stylesheet" type="text/css" href="../_css/jquery.fullPage.css" />
-	<link rel="stylesheet" type="text/css" href="../_css/examples.css" />
+<!-- 	<link rel="stylesheet" type="text/css" href="../_css/examples.css" /> -->
 
 <!-- 	// js after css !!! -->
 	<script type="text/javascript" src="../_js/jquery.1.8.3.min.js"></script>
@@ -323,7 +257,7 @@ $(document).ready(function() {
 				}
 
 				echo '<div id="case_'.$id.'" class="slide div-no-repeat div-contain" style="background-image:url('.$url_bg.');">';
-				  	echo '<h1>'.$id.'</h1>';
+				  	// echo '<h1>'.$id.'</h1>';
 				echo '</div>';
 			}
 		?>

@@ -7,6 +7,7 @@ var cy = cytoscape({
 	zoom: 1.5,
 	// zoom: 0.5,
 
+
 	elements: [],
 
 	style: [
@@ -208,6 +209,9 @@ var cy = cytoscape({
 	],
 
 
+	// autounselectify: true, // magnet
+
+
 	layout: {
 		name: 'dagre',
 		animate: true,
@@ -227,10 +231,88 @@ var layoutChoosen = "dagre";
 
 cy.fit();
 
+cy.bind("tapend", "node", function(evt) {
+    i = 0;
+});
+
+
+// cy.unselect();
+// 			cy.nodes().each(function(i) {
+
+// 					console.log('-----------------------------------------------------------------this');
+// 					if (this.hasClass('highlight')){
+// 						console.log(this);
+// 					}
+
+
+// 				// var node = this;
+// 				// this.unselect();
+// 				// this.removeClass('highlighted')	;
+// 				// // this.removeClass('highlight conxlight').outgoers().removeClass('highlight');
+// 				// // cy.elements().difference(this.outgoers()).not(sel).addClass('semitransp');
+// 				// // this.removeClass('highlighted').outgoers().removeClass('highlighted');
+// 				// this.removeClass('highlight conxlight').outgoers().removeClass('highlight');
+
+// // overlay-opacity class
+
+// 			});
+
+// cy.elements().removeClass('highlighted');
+
+// cy.nodes().removeClass('highlighted');
+// cy.edges().removeClass('highlighted');
+
+
+// cy.unbind('click');
+//  cy.unbind('tapstart');
+//  cy.unbind('tapend');
+//  cy.bind('click ', 'node', function (evt) {
+//     onTap(evt);
+//  });
+
+// // cy.removeClass('highlight conxlight').outgoers().removeClass('highlight');
+
+// cy.nodes().removeClass('highlighted');
+
 
 
 // Document Ready starts
 $(function(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // check localStorage
@@ -1252,6 +1334,51 @@ console.log(localStorage.graph);
 
 
 	});
+
+
+
+
+
+
+
+// 	cy.on('layoutready', function(){
+// 			//cy.nodes().each(function(i) {
+
+// 					console.log('--XXXXXXXXXXXXXXXXX--------------this');
+// 					// if (this.hasClass('highlight')){
+// 					// 	console.log(this);
+// 					// }
+
+
+// 				// var node = this;
+// 				// this.unselect();
+// 				// this.removeClass('highlighted')	;
+// 				// // this.removeClass('highlight conxlight').outgoers().removeClass('highlight');
+// 				// // cy.elements().difference(this.outgoers()).not(sel).addClass('semitransp');
+// 				// // this.removeClass('highlighted').outgoers().removeClass('highlighted');
+// 				// this.removeClass('highlight conxlight').outgoers().removeClass('highlight');
+
+// // overlay-opacity class
+
+// 			// });
+// 	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

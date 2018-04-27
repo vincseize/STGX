@@ -15,7 +15,7 @@ $project_title = $json['Infos']['title'];
 $stg_myproject_name_index = "stg_myproject.html";
 $pack_folder = $_SESSION["PROJECT"]."_pack";
 
-
+// chmod_r($pack_folder,0777);  // TODO bug to solved
 // @recurseRmdir($pack_folder);
 @rrmdir($pack_folder);
 
@@ -29,8 +29,14 @@ copy_directory('../_css',$pack_folder.'/_css');
 copy_directory('cases',$pack_folder.'/cases');
 copy_directory('sequences',$pack_folder.'/sequences');
 
+// chmod_r($pack_folder,0777); TODO bug to solved
 
-// Start the buffering //
+
+
+
+
+@delete_subfolder($pack_folder,'compressed');
+
 ob_start();
 ?>
 

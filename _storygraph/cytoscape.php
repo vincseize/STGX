@@ -11,33 +11,6 @@ $realpath = realpath(dirname(__FILE__)); // /var/wwww/STG5/_storygraph
 $www_root = $_SERVER['DOCUMENT_ROOT']; // /var/www
 $www_root_stg = str_replace($www_root, "", $realpath); // /STG5/_storygraph
 
-// 	$path_cases_get_bg = "../cases_get_bg.php"; 
-// 	if (file_exists($path_cases_get_bg)) {
-// 		$path_cases_get_bg = "../cases_get_bg.php";
-
-// 	} else {
-// 	    $path_cases_get_bg = "cases_get_bg.php";
-// 	}
-
-// $PROJECT = $_SESSION["PROJECT"];
-
-
-// // Get real path for our zip folder
-//     $path_to_zip = "../__projects"; 
-//     if (file_exists($path_to_zip)) {
-//         $path_to_zip = "../__projects/".$PROJECT;
-//         $path_to_zip_destination = "../__projects/".$PROJECT.".zip";
-
-//     } else {
-//         $path_to_zip = "__projects/".$PROJECT;
-//         $path_to_zip_destination = "__projects/".$PROJECT.".zip";
-//     }
-
-// Get_project_zip($path_to_zip,$path_to_zip_destination);
-
-
-
-
 
 ?>
 
@@ -95,72 +68,14 @@ za
 
 
 
-
-
-
-
-<!-- 				    <div class="cell_menuSTG" >
-				        <button id="save_ST" class="btn_menuSTG" title="Save"><i class="fa fa-save"></i></button>
-				    </div>
-
-
-
-				    <div class="cell_menuSTG">
-				        <button id="deleteNodes_ST" class="btn_menuSTG" title="Delete Selected"><i class="fa fa-trash-o"></i></button>
-				    </div>
-
-				    <div class="cell_menuSTG">
-				        <button id="clear" class="btn_menuSTG" title="Clear Graph"><i class="fa fa-eraser"></i></button>
-				    </div>
-				    <div class="cell_menuSTG">
-				        <button id="todo_ST" class="btn_menuSTG" title="Todo"><i class="fa fa-bell-o"></i></button>
-				    </div>
-				    <div class="cell_menuSTG">
-				        <button id="help_ST" class="btn_menuSTG" title="Help"><i class="fa fa-question-circle"></i></button>
-				    </div>
-
-				    <div class="cell_menuSTG">
-						<button id="fit" class="btn_menuSTG" title="Show All"><i class="fa fa-arrows-alt"></i></button>
-				    </div> -->
-
-
 				</div>		
 
 
 
 
-<div idX="#menuLeft" class="menuLeft" styleX="background-color: red;">
+<div class="menuLeft" >
 
-	<div id="menuLeft_ST" class="menuLeft_ST"> <!-- // menu left ST -->
-
-<!-- 				<div class="container_menuSTG">
-
-				    <div class="cell_menuSTG">
-				        <button id="save_ST" class="btn_menuSTG" title="Save"><i class="fa fa-save"></i></button>
-				    </div>
-
-
-
-				    <div class="cell_menuSTG">
-				        <button id="deleteNodes_ST" class="btn_menuSTG" title="Delete Selected"><i class="fa fa-trash-o"></i></button>
-				    </div> -->
-
-<!-- 				    <div class="cell_menuSTG">
-				        <button id="clear" class="btn_menuSTG" title="Clear Graph"><i class="fa fa-eraser"></i></button>
-				    </div> -->
-<!-- 				    <div class="cell_menuSTG">
-				        <button id="todo_ST" class="btn_menuSTG" title="Todo"><i class="fa fa-bell-o"></i></button>
-				    </div> -->
-<!-- 				    <div class="cell_menuSTG">
-				        <button id="help_ST" class="btn_menuSTG" title="Help"><i class="fa fa-question-circle"></i></button>
-				    </div>
-
-				    <div class="cell_menuSTG">
-						<button id="fit" class="btn_menuSTG" title="Show All"><i class="fa fa-arrows-alt"></i></button>
-				    </div>
-
-
-				</div>		 -->
+	<div id="menuLeft_ST" class="menuLeft_ST" style="opacity: 0.9;"> <!-- // menu left ST -->
 
 
 
@@ -172,7 +87,7 @@ za
 
 				<br> 
 
-		<div class="menu_left_content">
+		<div class="menu_left_content" >
 
 <!-- 				<div class="nodeModel assetM" data-type="asset">Case</div>
 				<div class="nodeModel sceneM" data-type="scene">Sequence</div> -->

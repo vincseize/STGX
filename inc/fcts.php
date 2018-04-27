@@ -114,6 +114,37 @@ function recurseRmdir($dir) {
   return rmdir($dir);
 }
 
+function chmod_r($path,$perm) {
+    $dir = new DirectoryIterator($path);
+    foreach ($dir as $item) {
+        chmod($item->getPathname(), $perm);
+        if ($item->isDir() && !$item->isDot()) {
+            chmod_r($item->getPathname());
+        }
+    }
+}
+
+function delete_subfolder($dir,$subFolderToDelete){
+    $fileInfo     = scandir($dir);
+    $allFileLists = [];
+    foreach ($fileInfo as $folder) {
+        if ($folder !== '.' && $folder !== '..') {
+            if (is_dir($dir . DIRECTORY_SEPARATOR . $folder) === true) {
+                $allFileLists[$folder . '/'] = delete_subfolder($dir . DIRECTORY_SEPARATOR . $folder,$subFolderToDelete);
+                if($folder==$subFolderToDelete){;
+                    // echo $folder.'<br>';
+                    // echo $dir . DIRECTORY_SEPARATOR . $folder.'<br>';
+                    rrmdir($dir . DIRECTORY_SEPARATOR . $folder);
+                }
+                
+            } else {
+                $allFileLists[$folder] = $folder;
+            }
+        }
+    }
+    // return $allFileLists;
+}
+
 function return_bytes($val) {
     $val = trim($val);
     $last = strtolower($val[strlen($val)-1]);

@@ -1,6 +1,9 @@
 <?php
 // Start the session
 session_start();
+
+
+
 require_once('inc/define.php');
 $_SESSION["LOCALSTORAGE_TXT_CHECK"] = 'false';
 $localstorage_graph_txt = '__projects/'.$_SESSION["PROJECT"].'/localstorage_graph.txt';
@@ -8,6 +11,14 @@ if (file_exists($localstorage_graph_txt)) {
     // echo 'true';
     $_SESSION["LOCALSTORAGE_TXT_CHECK"] = 'true';
 }
+
+
+if(!isset($_SESSION['PROJECT']))
+{
+    header("Location: index.php");
+    exit;
+}
+
 
 ?>
 
@@ -66,6 +77,20 @@ if (file_exists($localstorage_graph_txt)) {
 
 <body oncontextmenu="return false;" style="" styleX="background-color: red;">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--   // preload div-->
 <div id="loading"> 
     <div class="book">
@@ -74,6 +99,56 @@ if (file_exists($localstorage_graph_txt)) {
       <div class="book__page"></div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+
+.iframe_modal {
+       overflow:hidden;
+       padding:0px;
+       margin:0px;
+       z-index: 9999999;
+       position: absolute;
+       width:100%;
+       height:100%;
+       background: none;
+       display:none;
+       /*opacity:0.8;*/
+     }
+
+</style>
+
+
+<iframe id="iframe_modal" class="iframe_modal"  allowtransparency="true">
+
+
+
+
+
+
+
+
+</iframe>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- <div id="div_todo" class="div_todo" style="z-index: 0;"> -->
 <iframe id="iframe_todo" class="iframe_todo"></iframe>
@@ -119,6 +194,32 @@ if (file_exists($localstorage_graph_txt)) {
 </div>
 <!--   // content -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--   footer -->
   <div id="footer" class="footer no-border">
   <?php include('footer.php');?>
@@ -149,6 +250,32 @@ if (file_exists($localstorage_graph_txt)) {
 
     </ul>
 <div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript" src="js/jquery-ui.js"></script>
 
@@ -272,6 +399,10 @@ $(window).load(function() {
   // }, 1000 );
 
 
+// $('#imagemodal').modal('show');
+
+
+
 });
 
 // TEST to do
@@ -289,6 +420,12 @@ $(window).load(function() {
 
 
 
+</script>
+
+
+
+<script type="text/javascript">
+  
 </script>
 
 

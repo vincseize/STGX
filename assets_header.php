@@ -27,43 +27,16 @@ $id_name = localstorage_graph_id_name($PROJECT);
 
 
 
-<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css"><script> </script>
+<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="css/home.css"><script> </script>
-<link rel="stylesheet" href="css/bin.css"><script> </script>
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/bin.css">
 
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> <script> </script>-->
-<link rel="stylesheet" href="css/jquery-ui.css"><script> </script>
-<link rel="stylesheet" type="text/css" href="css/bootstrap-filters.min.css"><script> </script>
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-filters.min.css">
 
-<script>
 
-// var localStorage = [];
-//
-// if (!localStorage.graph)
-// 	localStorage.graph = "";
-//
-// 	var toto = 'toto';
-// 	var msg = 'msg';
-//     $.ajax({
-// 	  type: 'POST',
-// 	   url: '_storygraph/localstorage.php',
-// 	  data: {'nodes': localStorage.graph},
-// 	  async: false,
-// 	  //dataType:'JSON',
-// 	  success: function(msg) {
-// 		// alert(msg);
-// 		var toto = msg;
-// 		// console.log(msg);
-// 		console.log("Outside ajax: "+msg);
-//
-// 	  },
-// 	  error: function() {
-// 		alert("There was an error. Try again please!");
-// 	  }
-// 	});
-// console.log("Outside ajax2: "+toto);
-</script>
 
 <style>
 

@@ -8,8 +8,15 @@
 
   <body>
 
+
+
+
     <script type="text/javascript">window.location = "storygraph.php";</script>
     
+
+
+
+
     
   </body>
 </html>

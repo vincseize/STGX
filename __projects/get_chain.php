@@ -1,6 +1,6 @@
 <?php
 
-
+// echo 'toto';
 
 // Si les données json sont dans un fichier distant:
 $json = file_get_contents('localstorage_graph.txt');
@@ -17,6 +17,7 @@ foreach($json_data as $v){
     if($classes == 'cases'){
       
       $id_case = $v['data']['id'];
+      // echo $id_case;
       $arrayID[] = $id_case;
 
     }

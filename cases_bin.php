@@ -67,12 +67,6 @@ include('assets_header.php');
                     }
                 }
 
-                // if (!file_exists($src_img_thumb)) {
-                //     $bg_img = $bg_img_default;
-                //     $bg_img_original = $bg_img_default;
-                // } 
-
-
             }
 
 
@@ -81,7 +75,7 @@ include('assets_header.php');
         	echo "<div class='card fiche_card'>";
 
                 echo "<div class='div__cardImage'>";
-                	echo "<img width='1000px' id='".$id_img."' class='card__image card__image--fence image_fiche ".$pop."' src='".$bg_img."' src_high='".$bg_img_original."'></img>"; // todo better
+                	echo "<img width='1000px' id-asset='".$number."' id='".$id_img."' class='card__image card__image--fence image_fiche ".$pop."' src='".$bg_img."' src_high='".$bg_img_original."'></img>"; // todo better
                     echo "<div id='".$id_progressBar."' class='progressBar'><div id='".$id_percent."' class='percent'>0%</div></div>";
                 	echo "<div id='".$id_divAsset."' class='title-asset' droppable='$droppable'>";
                         echo "<label class='$class_btn_upload_fileContainer'>";
@@ -129,7 +123,7 @@ include('assets_header.php');
 
 
 <!-- Creates the bootstrap modal where the image will appear -->
-<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="imagemodalDES" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -144,7 +138,7 @@ include('assets_header.php');
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
@@ -154,8 +148,21 @@ include('assets_header.php');
 
 <script type="text/javascript">
 $(".pop").on("click", function() {
-   $('#imagepreview').attr('src', $(this).attr('src_high')); // here asign the image to the modal when the user click the enlarge link
-   $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+
+    $('#imagepreview').attr('src', $(this).attr('src_high')); // here asign the image to the modal when the user click the enlarge link
+    // $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+
+    // window.parent.
+    var modal = parent.document.getElementById('iframe_modal');
+    // var modal = parent.document.getElementById('imagemodal');
+    $(modal).show(); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+    // $('#imagemodal').modal('show');
+
+
+url = "assets_edit.php?id="+$(this).attr('id-asset');
+$(modal).attr("src", url);
+
+
 });
 </script>
 

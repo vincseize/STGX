@@ -285,59 +285,29 @@ $(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // check localStorage
 
 
-// var localStorage_txt_check = "<?php echo $_SESSION["LOCALSTORAGE_TXT_CHECK"];?>";
+
 console.log('--------------------------------- localStorage_txt_check -------------------: ' + localStorage_txt_check);
+
 
 
 
 var lastClickCoords  = [0,0];	// Pour sauver la position du clic-droit
 var contextSelection = false;	// Pour garder en mémoire le node du clic-droit
-if (!localStorage.graph && localStorage_txt_check == 'false') {  // AND NO localStorage.txt
-	localStorage.graph = "";
+
+// localStorage.graph
+if (!window.localStorage[session_project] && localStorage_txt_check == 'false') {  // AND NO localStorage.txt
+	window.localStorage[session_project] = "";
 }
 
 if (localStorage_txt_check == 'true') {
 	load_localStorage_txt();
 }
 
-else if (localStorage.graph !== "") {
-	// var elems = JSON.parse(localStorage.graph);
-	// if (elems.length) {
-	// 	cy.add(elems);
-	// 	}
+else if (window.localStorage[session_project] !== "") {
+
 	load_localStorage();
 }
 
@@ -388,19 +358,25 @@ $('#save_ST').trigger('click');
 
 
 function load_localStorage($project=false){
-	if (localStorage.graph !== "") {
-		var elems = JSON.parse(localStorage.graph);
+	if (window.localStorage[session_project] !== "") {
+		var elems = JSON.parse(window.localStorage[session_project]);
 		if (elems.length) {
 			cy.add(elems);
 			// cy.layout({'name': layoutChoosen, animate: true});
 		}
 		cy.fit();
+
+		// var allJson = cy.elements().jsons(); // todo better in a function 
+		// window.localStorage[session_project] = JSON.stringify(allJson);
+
 	return elems;
 	}
 }
 
 function load_localStorage_txt($project=false){
-		console.log("load_localStorage_txt");
+	console.clear();
+		console.log("load_localStorage_txt " + session_project);
+
 		var url_localstorage_graph_txt = '__projects/'+session_project+'/localstorage_graph.txt';
 	    $.get( url_localstorage_graph_txt , function( data ) {
 	    	console.log(data);
@@ -414,6 +390,11 @@ function load_localStorage_txt($project=false){
 
 			}
 			cy.fit();
+
+		// var allJson = cy.elements().jsons(); // todo better in a function 
+		// window.localStorage[session_project] = JSON.stringify(allJson);
+
+			// window.localStorage[session_project] = JSON.parse(window.localStorage[session_project]);
 			return elems;
 			
 	    });
@@ -581,7 +562,7 @@ function callback_ok(msg){
 
     console.clear();
     console.log('saveST');
-    console.log(localStorage.graph);
+    console.log(window.localStorage[session_project]);
 
 }
 
@@ -636,8 +617,7 @@ function pos_seq_id(){
 
 function delete_zip(){
 		console.log('delete zip files');
-				// var project = <?php echo $_SESSION["PROJECT"];?>;
-				// "<?php echo $_SESSION["LOCALSTORAGE_TXT_CHECK"];?>";
+
 				$.ajax({
 				  type: "POST",
 				  url: "_storygraph/zip_project.php",
@@ -656,12 +636,17 @@ function delete_zip(){
 }
 // delete_zip();
 
+function save_to_localstorage(){
+
+		var allJson = cy.elements().jsons(); // todo better in a function 
+		window.localStorage[session_project] = JSON.stringify(allJson);
+
+}
+
 
 	$('#get_project_data').on("click", function(){
 		console.log('zip project');
-		// delete_zip();
-				// var project = <?php echo $_SESSION["PROJECT"];?>;
-				// "<?php echo $_SESSION["LOCALSTORAGE_TXT_CHECK"];?>";
+
 				$.ajax({
 				  type: "POST",
 				  url: "_storygraph/zip_project.php",
@@ -921,7 +906,7 @@ console.log(position_y);
 
 
 
-console.log(localStorage.graph);
+console.log(window.localStorage[session_project]);
 
 
 
@@ -1047,8 +1032,8 @@ console.log(localStorage.graph);
 	$('#load').click(function(){
 		cy.remove('*');
 		$('#deleteNodes').addClass('disabled');
-		if (localStorage.graph !== "") {
-			var elems = JSON.parse(localStorage.graph);
+		if (window.localStorage[session_project] !== "") {
+			var elems = JSON.parse(window.localStorage[session_project]);
 			if (elems.length) {
 				cy.add(elems);
 				cy.layout({'name': layoutChoosen, animate: true});
@@ -1066,23 +1051,28 @@ console.log(localStorage.graph);
 		console.log("save graph from to menu debug");
 		// if (!cy.elements().length)
 		// 	return;
-		var allJson = cy.elements().jsons();
-		localStorage.graph = JSON.stringify(allJson);
+
+		// var allJson = cy.elements().jsons();
+		// window.localStorage[session_project] = JSON.stringify(allJson);
+		save_to_localstorage();
+
 		$('#nbNodes').html("OK, "+cy.nodes().length+" éléments en mémoire.").show();
 
 		var msg = "OK, "+cy.nodes().length+" asset(s) saved.";
 		callback_ok(msg);
-		// console.log(localStorage.graph);
 	});
+
+
+
 
 	$('#save_ST').click(function(event, check_arrays='true'){
 		console.log("saveST graph from main.js");
 		// if (!cy.elements().length)
 		// 	return;
 		// var allJson = cy.elements().jsons();
-		// localStorage.graph = JSON.stringify(allJson);
+		// window.localStorage[session_project] = JSON.stringify(allJson);
 		// $('#nbNodes_menuSTG').html("OK, "+cy.nodes().length+" éléments en mémoire.").show();
-		// console.log(localStorage.graph);
+		// console.log(window.localStorage[session_project]);
 
 		console.log("trigger : "+check_arrays);
 		
@@ -1090,16 +1080,18 @@ console.log(localStorage.graph);
 		console.log(cy.elements().length);
 		// if (!cy.elements().length)
 		// 	return;
-		var allJson = cy.elements().jsons(); // todo better in a function 
-		localStorage.graph = JSON.stringify(allJson);
+
+		// var allJson = cy.elements().jsons(); // todo better in a function 
+		// window.localStorage[session_project] = JSON.stringify(allJson);
+		save_to_localstorage();
 
 		
-		console.log(localStorage.graph);
+		console.log(window.localStorage[session_project]);
 		  $.ajax({ // todo better in a function
 		    type: 'POST',
-		    url: '_storygraph/save_graphNodes.php', // create_assets_folders
-		    // data: {'nodes': localStorage.graph , 'del_dir': check_arrays},
-		    data: {'nodes': localStorage.graph },
+		    url: '_storygraph/save_graphNodes.php', // create_assets_folders TO DO BETTER
+		    // data: {'nodes': window.localStorage[session_project] , 'del_dir': check_arrays},
+		    data: {'nodes': window.localStorage[session_project] },
 		    success: function(msg) {
 		      console.log(msg);
 
@@ -1151,7 +1143,7 @@ console.log(localStorage.graph);
 
 	// Bouton OUBLIER LocalStorage
 	$('#emptyLS').click(function(){
-		localStorage.graph = "";
+		window.localStorage[session_project] = "";
 		$('#nbNodes').html("OK, plus rien en mémoire.").show();
 		var msg = "Nothing in memory anymore.";
 		callback_ok(msg);
